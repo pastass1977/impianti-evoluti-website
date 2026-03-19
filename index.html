@@ -1,0 +1,1037 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>IMPIANTI EVOLUTI SRLS - L'impiantistica del futuro</title>
+<link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet"/>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700;800&family=Roboto:wght@300;400;500&display=swap" rel="stylesheet"/>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Roboto', sans-serif;
+            background-color: #ffffff;
+            overflow-x: hidden;
+            scroll-behavior: smooth;
+        }
+
+        :root {
+            --color-blue: #1A5276;
+            --color-green: #27AE60;
+            --color-orange: #F39C12;
+            --color-dark: #2C3E50;
+            --color-light: #ECF0F1;
+        }
+
+        /* Sticky Navbar */
+        .navbar {
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            background-color: rgba(26, 82, 118, 0.95);
+            backdrop-filter: blur(10px);
+            height: 70px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 60px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+        }
+        
+        .nav-logo {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 800;
+            font-size: 20px;
+            color: white;
+            text-transform: uppercase;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .nav-menu {
+            display: flex;
+            gap: 30px;
+        }
+
+        .nav-link {
+            color: white;
+            text-decoration: none;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 14px;
+            font-weight: 500;
+            text-transform: uppercase;
+            transition: color 0.3s;
+        }
+
+        .nav-link:hover {
+            color: var(--color-orange);
+        }
+
+        /* Hero Section */
+        .hero-section {
+            min-height: 100vh;
+            background-color: var(--color-blue);
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: white;
+            padding: 0 20px;
+        }
+
+        .hero-bg-pattern {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: radial-gradient(circle at 50% 50%, rgba(255,255,255,0.05) 1px, transparent 1px);
+            background-size: 30px 30px;
+            opacity: 0.5;
+            z-index: 0;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 10;
+        }
+
+        .hero-logo-large {
+            font-size: 80px;
+            margin-bottom: 30px;
+            color: white;
+            opacity: 0.9;
+        }
+
+        .hero-title {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 800;
+            font-size: 64px;
+            margin: 0 0 20px 0;
+            text-transform: uppercase;
+            letter-spacing: -2px;
+            line-height: 1.1;
+            text-shadow: 0 4px 15px rgba(0,0,0,0.3);
+        }
+
+        .hero-subtitle {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 32px;
+            font-weight: 300;
+            margin: 0 0 50px 0;
+            opacity: 0.9;
+            letter-spacing: 1px;
+        }
+
+        .btn-cta {
+            display: inline-block;
+            background-color: var(--color-orange);
+            color: white;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
+            font-size: 20px;
+            padding: 20px 50px;
+            border-radius: 50px;
+            text-decoration: none;
+            box-shadow: 0 10px 25px rgba(243, 156, 18, 0.4);
+            transition: transform 0.3s, box-shadow 0.3s;
+            text-transform: uppercase;
+        }
+
+        .btn-cta:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(243, 156, 18, 0.6);
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
+        /* Section Generic */
+        .section {
+            padding: 100px 60px;
+            position: relative;
+        }
+
+        .section-title-wrapper {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .section-title {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 800;
+            font-size: 42px;
+            color: var(--color-blue);
+            margin: 0 0 15px 0;
+            text-transform: uppercase;
+            position: relative;
+            display: inline-block;
+        }
+
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 80px;
+            height: 6px;
+            background-color: var(--color-orange);
+            margin: 15px auto 0 auto;
+            border-radius: 3px;
+        }
+
+        /* Chi Siamo Section */
+        .chi-siamo-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+        }
+
+        .about-text p {
+            font-size: 18px;
+            line-height: 1.8;
+            color: #555;
+            margin-bottom: 20px;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+
+        .stat-card {
+            background-color: white;
+            padding: 30px 20px;
+            border-radius: 12px;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+            border-top: 4px solid var(--color-blue);
+        }
+
+        .stat-value {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 800;
+            font-size: 36px;
+            color: var(--color-blue);
+            margin: 0 0 5px 0;
+        }
+
+        .stat-label {
+            font-size: 14px;
+            color: #777;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin: 0;
+        }
+
+        /* Mission Section */
+        .bg-light-blue {
+            background-color: #EBF5FB;
+        }
+
+        .mission-quote {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 32px;
+            font-weight: 300;
+            color: var(--color-blue);
+            text-align: center;
+            margin-bottom: 60px;
+            position: relative;
+            padding: 0 40px;
+        }
+        
+        .mission-quote i {
+            color: rgba(26, 82, 118, 0.1);
+            font-size: 60px;
+            position: absolute;
+            top: -20px;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        .pillars-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+        }
+
+        .pillar-card {
+            background-color: white;
+            padding: 40px;
+            border-radius: 16px;
+            text-align: center;
+            transition: transform 0.3s;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+        }
+
+        .pillar-card:hover {
+            transform: translateY(-10px);
+        }
+
+        .pillar-icon {
+            font-size: 48px;
+            margin-bottom: 20px;
+        }
+
+        .pillar-title {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
+            font-size: 20px;
+            margin: 0 0 15px 0;
+            color: var(--color-dark);
+        }
+
+        /* Services Overview */
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 20px;
+        }
+
+        .service-card {
+            background-color: white;
+            border-radius: 12px;
+            padding: 30px 20px;
+            text-align: center;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.08);
+            transition: transform 0.3s;
+            border: 1px solid #eee;
+            cursor: pointer;
+        }
+
+        .service-card:hover {
+            transform: translateY(-10px);
+            border-color: var(--color-green);
+        }
+
+        .service-icon {
+            width: 70px;
+            height: 70px;
+            border-radius: 50%;
+            background-color: rgba(39, 174, 96, 0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 30px;
+            color: var(--color-green);
+            margin: 0 auto 20px auto;
+        }
+
+        .service-title {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
+            font-size: 16px;
+            margin: 0;
+            color: var(--color-dark);
+        }
+
+        /* Service Details (Alternating) */
+        .detail-row {
+            display: flex;
+            margin-bottom: 0;
+            min-height: 500px;
+        }
+
+        .detail-content {
+            flex: 1;
+            padding: 60px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            background-color: white;
+        }
+
+        .detail-image {
+            flex: 1;
+            background-color: #ddd;
+            background-size: cover;
+            background-position: center;
+            position: relative;
+        }
+
+        .detail-title {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
+            font-size: 32px;
+            color: var(--color-blue);
+            margin: 0 0 20px 0;
+        }
+
+        .detail-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .detail-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
+            font-size: 16px;
+            color: #555;
+        }
+
+        .detail-icon {
+            color: var(--color-green);
+            margin-right: 15px;
+        }
+        
+        /* Perché Noi */
+        .bg-gradient {
+            background-color: #1A5276;
+            color: white;
+        }
+        
+        .bg-gradient .section-title {
+            color: white;
+        }
+
+        .reasons-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+        }
+
+        .reason-card {
+            background-color: rgba(255,255,255,0.1);
+            backdrop-filter: blur(5px);
+            padding: 30px;
+            border-radius: 12px;
+            border: 1px solid rgba(255,255,255,0.2);
+            transition: transform 0.3s;
+        }
+
+        .reason-card:hover {
+            transform: scale(1.05);
+            background-color: rgba(255,255,255,0.2);
+        }
+
+        .reason-title {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
+            font-size: 18px;
+            margin: 15px 0 10px 0;
+        }
+
+        /* Target */
+        .target-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 40px;
+        }
+
+        .target-col {
+            background-color: white;
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            border-top: 6px solid #ccc;
+        }
+
+        .target-header {
+            padding: 30px;
+            text-align: center;
+            background-color: #f9f9f9;
+        }
+
+        .target-icon {
+            font-size: 40px;
+            margin-bottom: 15px;
+            color: var(--color-blue);
+        }
+
+        .target-body {
+            padding: 30px;
+        }
+
+        /* Numeri e Crescita */
+        .numbers-section {
+            background-color: var(--color-blue);
+            color: white;
+            padding: 80px 60px;
+        }
+
+        .chart-container {
+            background-color: white;
+            border-radius: 16px;
+            padding: 40px;
+            height: 400px;
+            margin-top: 40px;
+            max-width: 1200px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* Contatti */
+        .contact-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            background-color: white;
+            border-radius: 20px;
+            padding: 50px;
+            box-shadow: 0 15px 40px rgba(0,0,0,0.1);
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+            color: var(--color-dark);
+        }
+
+        .form-input {
+            width: 100%;
+            padding: 15px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            font-family: 'Roboto', sans-serif;
+            font-size: 16px;
+            background-color: #f9f9f9;
+        }
+
+        .contact-info-item {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 30px;
+        }
+
+        .contact-info-icon {
+            width: 50px;
+            height: 50px;
+            background-color: rgba(26, 82, 118, 0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--color-blue);
+            font-size: 20px;
+            margin-right: 20px;
+            flex-shrink: 0;
+        }
+
+        /* Footer */
+        .footer {
+            background-color: #154360;
+            color: rgba(255,255,255,0.7);
+            padding: 60px;
+            font-size: 14px;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        .footer h3 {
+            color: white;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 18px;
+            margin-bottom: 20px;
+        }
+
+        .footer-links {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .footer-links li {
+            margin-bottom: 10px;
+        }
+
+        .footer-bottom {
+            border-top: 1px solid rgba(255,255,255,0.1);
+            padding-top: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        /* Utility */
+        .text-blue { color: var(--color-blue); }
+        .text-green { color: var(--color-green); }
+        .text-orange { color: var(--color-orange); }
+        .bg-white { background-color: white; }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .navbar { padding: 0 20px; }
+            .nav-menu { display: none; }
+            .hero-title { font-size: 36px; }
+            .hero-subtitle { font-size: 20px; }
+            .section { padding: 60px 20px; }
+            .chi-siamo-grid, .contact-container { grid-template-columns: 1fr; }
+            .services-grid { grid-template-columns: 1fr 1fr; }
+            .pillars-grid, .reasons-grid, .target-grid { grid-template-columns: 1fr; }
+            .detail-row { flex-direction: column; }
+            .footer-grid { grid-template-columns: 1fr; }
+        }
+
+    </style>
+</head>
+<body>
+
+<!-- Navbar -->
+<nav class="navbar">
+<div class="nav-logo">
+<i class="fa-solid fa-bolt text-orange"></i>
+<span>IMPIANTI EVOLUTI</span>
+</div>
+<div class="nav-menu">
+<a class="nav-link" href="#home">Home</a>
+<a class="nav-link" href="#chi-siamo">Chi Siamo</a>
+<a class="nav-link" href="#servizi">Servizi</a>
+<a class="nav-link" href="#perche-noi">Perché Noi</a>
+<a class="nav-link" href="#contatti">Contatti</a>
+</div>
+</nav>
+
+<!-- Hero Section -->
+<section id="home" class="hero-section">
+<div class="hero-bg-pattern"></div>
+<div class="hero-content">
+<div class="hero-logo-large">
+<i class="fa-solid fa-house-signal"></i>
+</div>
+<h1 class="hero-title">IMPIANTI EVOLUTI SRLS</h1>
+<p class="hero-subtitle">L'impiantistica del futuro ha già un nome</p>
+<a class="btn-cta" href="#contatti">Richiedi Preventivo Gratuito</a>
+</div>
+<div style="position: absolute; bottom: 30px; animation: bounce 2s infinite;">
+<i class="fa-solid fa-chevron-down" style="font-size: 30px;"></i>
+</div>
+</section>
+
+<!-- Chi Siamo Section -->
+<section id="chi-siamo" class="section bg-white">
+<div class="section-title-wrapper">
+<h2 class="section-title">Chi Siamo</h2>
+</div>
+<div class="chi-siamo-grid">
+<div class="about-text">
+<p><strong>IMPIANTI EVOLUTI SRLS</strong> nasce nel 2022 con l'obiettivo di rivoluzionare il settore dell'impiantistica attraverso un approccio integrato e tecnologicamente avanzato.</p>
+<p>Con sede a Carovigno (BR), operiamo in tutto il territorio offrendo soluzioni chiavi in mano per privati, aziende e pubblica amministrazione. La nostra forza sta nella capacità di unire competenze elettriche, termoidrauliche e digitali.</p>
+<p>Siamo specializzati nell'installazione e manutenzione di impianti ad alta efficienza energetica, garantendo affidabilità e conformità alle normative vigenti.</p>
+</div>
+<div class="stats-grid">
+<div class="stat-card">
+<h3 class="stat-value">2022</h3>
+<p class="stat-label">Anno Fondazione</p>
+</div>
+<div class="stat-card">
+<h3 class="stat-value text-green">201K €</h3>
+<p class="stat-label">Ricavi Totali</p>
+</div>
+<div class="stat-card">
+<h3 class="stat-value text-orange">+70,3%</h3>
+<p class="stat-label">Crescita</p>
+</div>
+<div class="stat-card">
+<h3 class="stat-value">5+</h3>
+<p class="stat-label">Settori Operativi</p>
+</div>
+</div>
+</div>
+</section>
+
+<!-- Mission Section -->
+<section class="section bg-light-blue">
+<div class="mission-quote">
+<i class="fa-solid fa-quote-left"></i>
+<p>"Portiamo tecnologia e sostenibilità in ogni edificio, trasformando impianti in valore duraturo"</p>
+</div>
+<div class="pillars-grid">
+<div class="pillar-card">
+<i class="fa-solid fa-lightbulb pillar-icon text-orange"></i>
+<h3 class="pillar-title">INNOVAZIONE</h3>
+<p>Soluzioni smart, domotica avanzata e integrazione sistemi per il massimo comfort.</p>
+</div>
+<div class="pillar-card">
+<i class="fa-solid fa-shield-halved pillar-icon text-blue"></i>
+<h3 class="pillar-title">AFFIDABILITÀ</h3>
+<p>Standard certificati, sicurezza garantita e conformità normativa in ogni progetto.</p>
+</div>
+<div class="pillar-card">
+<i class="fa-solid fa-leaf pillar-icon text-green"></i>
+<h3 class="pillar-title">SOSTENIBILITÀ</h3>
+<p>Energie rinnovabili, riduzione dei consumi e rispetto per l'ambiente.</p>
+</div>
+</div>
+</section>
+
+<!-- Services Overview -->
+<section id="servizi" class="section bg-white">
+<div class="section-title-wrapper">
+<h2 class="section-title">I Nostri Servizi</h2>
+</div>
+<div class="services-grid">
+<div class="service-card">
+<div class="service-icon" style="color: var(--color-orange); background: rgba(243, 156, 18, 0.1);">
+<i class="fa-solid fa-bolt"></i>
+</div>
+<h3 class="service-title">Impianti Elettrici</h3>
+</div>
+<div class="service-card">
+<div class="service-icon" style="color: var(--color-blue); background: rgba(26, 82, 118, 0.1);">
+<i class="fa-solid fa-droplet"></i>
+</div>
+<h3 class="service-title">Idrotermosanitari</h3>
+</div>
+<div class="service-card">
+<div class="service-icon" style="color: var(--color-green); background: rgba(39, 174, 96, 0.1);">
+<i class="fa-solid fa-sun"></i>
+</div>
+<h3 class="service-title">Energie Rinnovabili</h3>
+</div>
+<div class="service-card">
+<div class="service-icon" style="color: #3498DB; background: rgba(52, 152, 219, 0.1);">
+<i class="fa-solid fa-building"></i>
+</div>
+<h3 class="service-title">Edilizia</h3>
+</div>
+<div class="service-card">
+<div class="service-icon" style="color: #9B59B6; background: rgba(155, 89, 182, 0.1);">
+<i class="fa-solid fa-tower-broadcast"></i>
+</div>
+<h3 class="service-title">Telecomunicazioni</h3>
+</div>
+</div>
+</section>
+
+<!-- Service Details - Elettrico -->
+<div class="detail-row">
+<div class="detail-image" style='background-image: url("https://images.unsplash.com/photo-1558346490-a72e53ae2d4f?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80");'></div>
+<div class="detail-content">
+<h3 class="detail-title">Impianti Elettrici</h3>
+<p style="margin-bottom: 20px; color: #666;">Progettazione e installazione di sistemi elettrici civili e industriali all'avanguardia.</p>
+<ul class="detail-list">
+<li class="detail-item"><i class="fa-solid fa-check detail-icon"></i> Quadri elettrici e distribuzione</li>
+<li class="detail-item"><i class="fa-solid fa-check detail-icon"></i> Domotica e Building Automation</li>
+<li class="detail-item"><i class="fa-solid fa-check detail-icon"></i> Videosorveglianza e sicurezza</li>
+<li class="detail-item"><i class="fa-solid fa-check detail-icon"></i> Illuminazione LED efficiente</li>
+<li class="detail-item"><i class="fa-solid fa-check detail-icon"></i> Sistemi di allarme antintrusione</li>
+</ul>
+</div>
+</div>
+
+<!-- Service Details - Idrotermosanitario -->
+<div class="detail-row">
+<div class="detail-content" style="background-color: #f9f9f9;">
+<h3 class="detail-title">Impianti Idrotermosanitari</h3>
+<p style="margin-bottom: 20px; color: #666;">Comfort climatico e gestione efficiente delle risorse idriche per ogni ambiente.</p>
+<ul class="detail-list">
+<li class="detail-item"><i class="fa-solid fa-check detail-icon"></i> Caldaie e pompe di calore</li>
+<li class="detail-item"><i class="fa-solid fa-check detail-icon"></i> Riscaldamento a pavimento</li>
+<li class="detail-item"><i class="fa-solid fa-check detail-icon"></i> Climatizzazione e trattamento aria</li>
+<li class="detail-item"><i class="fa-solid fa-check detail-icon"></i> Impianti idrici e sanitari</li>
+<li class="detail-item"><i class="fa-solid fa-check detail-icon"></i> Sistemi antincendio</li>
+</ul>
+</div>
+<div class="detail-image" style='background-image: url("https://images.unsplash.com/photo-1581094794329-c8112a89af12?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80");'></div>
+</div>
+
+<!-- Service Details - Rinnovabili -->
+<div class="detail-row">
+<div class="detail-image" style='background-image: url("https://images.unsplash.com/photo-1509391366360-2e959784a276?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80");'></div>
+<div class="detail-content">
+<h3 class="detail-title">Energie Rinnovabili <span style="font-size: 12px; background: var(--color-green); color: white; padding: 5px 10px; border-radius: 20px; vertical-align: middle; margin-left: 10px;">GREEN</span></h3>
+<p style="margin-bottom: 20px; color: #666;">Soluzioni per l'indipendenza energetica e il rispetto dell'ambiente.</p>
+<ul class="detail-list">
+<li class="detail-item"><i class="fa-solid fa-check detail-icon"></i> Impianti fotovoltaici</li>
+<li class="detail-item"><i class="fa-solid fa-check detail-icon"></i> Solare termico</li>
+<li class="detail-item"><i class="fa-solid fa-check detail-icon"></i> Sistemi di accumulo energia</li>
+<li class="detail-item"><i class="fa-solid fa-check detail-icon"></i> Colonne di ricarica veicoli elettrici</li>
+<li class="detail-item"><i class="fa-solid fa-check detail-icon"></i> Incentivi e detrazioni fiscali</li>
+</ul>
+</div>
+</div>
+
+<!-- Perché Noi -->
+<section id="perche-noi" class="section bg-gradient">
+<div class="section-title-wrapper">
+<h2 class="section-title" style="color: white;">Perché Sceglierci</h2>
+</div>
+<div class="reasons-grid">
+<div class="reason-card">
+<i class="fa-solid fa-key text-orange" style="font-size: 30px; margin-bottom: 15px;"></i>
+<h3 class="reason-title">Chiavi in Mano</h3>
+<p style="font-size: 14px; opacity: 0.8;">Gestione completa del progetto dall'inizio alla fine.</p>
+</div>
+<div class="reason-card">
+<i class="fa-solid fa-user-gear text-green" style="font-size: 30px; margin-bottom: 15px;"></i>
+<h3 class="reason-title">Tecnici Esperti</h3>
+<p style="font-size: 14px; opacity: 0.8;">Team qualificato e costantemente aggiornato.</p>
+</div>
+<div class="reason-card">
+<i class="fa-solid fa-handshake text-orange" style="font-size: 30px; margin-bottom: 15px;"></i>
+<h3 class="reason-title">Unico Partner</h3>
+<p style="font-size: 14px; opacity: 0.8;">Integrazione perfetta tra tutti gli impianti.</p>
+</div>
+<div class="reason-card">
+<i class="fa-solid fa-wrench text-green" style="font-size: 30px; margin-bottom: 15px;"></i>
+<h3 class="reason-title">Assistenza</h3>
+<p style="font-size: 14px; opacity: 0.8;">Supporto post-vendita e manutenzione programmata.</p>
+</div>
+<div class="reason-card">
+<i class="fa-solid fa-pen-ruler text-orange" style="font-size: 30px; margin-bottom: 15px;"></i>
+<h3 class="reason-title">Progettazione</h3>
+<p style="font-size: 14px; opacity: 0.8;">Soluzioni su misura per ogni esigenza specifica.</p>
+</div>
+<div class="reason-card">
+<i class="fa-solid fa-chart-line text-green" style="font-size: 30px; margin-bottom: 15px;"></i>
+<h3 class="reason-title">Efficienza</h3>
+<p style="font-size: 14px; opacity: 0.8;">Focus sul risparmio energetico e riduzione costi.</p>
+</div>
+</div>
+</section>
+
+<!-- Target -->
+<section class="section bg-white">
+<div class="section-title-wrapper">
+<h2 class="section-title">Target e Clienti</h2>
+</div>
+<div class="target-grid">
+<div class="target-col" style="border-top-color: var(--color-blue);">
+<div class="target-header">
+<i class="fa-solid fa-ruler-combined target-icon" style="color: var(--color-blue);"></i>
+<h3 style="margin:0; font-family:'Montserrat', sans-serif; font-weight:700;">PROGETTISTI</h3>
+</div>
+<div class="target-body">
+<ul class="detail-list">
+<li class="detail-item"><i class="fa-solid fa-check detail-icon"></i> Supporto tecnico alla progettazione</li>
+<li class="detail-item"><i class="fa-solid fa-check detail-icon"></i> Computi metrici e capitolati</li>
+<li class="detail-item"><i class="fa-solid fa-check detail-icon"></i> Documentazione As-Built</li>
+<li class="detail-item"><i class="fa-solid fa-check detail-icon"></i> Integrazione multisistema</li>
+</ul>
+</div>
+</div>
+<div class="target-col" style="border-top-color: var(--color-orange);">
+<div class="target-header">
+<i class="fa-solid fa-helmet-safety target-icon" style="color: var(--color-orange);"></i>
+<h3 style="margin:0; font-family:'Montserrat', sans-serif; font-weight:700;">IMPRESE</h3>
+</div>
+<div class="target-body">
+<ul class="detail-list">
+<li class="detail-item"><i class="fa-solid fa-check detail-icon"></i> Subappalti qualificati</li>
+<li class="detail-item"><i class="fa-solid fa-check detail-icon"></i> Rispetto tempi di cantiere</li>
+<li class="detail-item"><i class="fa-solid fa-check detail-icon"></i> Sicurezza certificata</li>
+<li class="detail-item"><i class="fa-solid fa-check detail-icon"></i> Coordinamento maestranze</li>
+</ul>
+</div>
+</div>
+<div class="target-col" style="border-top-color: var(--color-green);">
+<div class="target-header">
+<i class="fa-solid fa-house-chimney target-icon" style="color: var(--color-green);"></i>
+<h3 style="margin:0; font-family:'Montserrat', sans-serif; font-weight:700;">PRIVATI</h3>
+</div>
+<div class="target-body">
+<ul class="detail-list">
+<li class="detail-item"><i class="fa-solid fa-check detail-icon"></i> Soluzioni chiavi in mano</li>
+<li class="detail-item"><i class="fa-solid fa-check detail-icon"></i> Detrazioni fiscali</li>
+<li class="detail-item"><i class="fa-solid fa-check detail-icon"></i> Assistenza dedicata</li>
+<li class="detail-item"><i class="fa-solid fa-check detail-icon"></i> Preventivi trasparenti</li>
+</ul>
+</div>
+</div>
+</div>
+</section>
+
+<!-- Numeri Section -->
+<section class="numbers-section">
+<div class="section-title-wrapper">
+<h2 class="section-title" style="color: white;">Crescita e Numeri</h2>
+<p style="color: rgba(255,255,255,0.8); font-size: 18px;">Un'azienda giovane in forte espansione</p>
+</div>
+<div class="chart-container">
+<canvas id="growthChart"></canvas>
+</div>
+</section>
+
+<!-- Contatti -->
+<section id="contatti" class="section bg-light-blue">
+<div class="section-title-wrapper">
+<h2 class="section-title">Contattaci</h2>
+</div>
+<div class="contact-container">
+<div class="contact-form">
+<div class="form-group">
+<label class="form-label">Nome e Cognome</label>
+<input class="form-input" placeholder="Il tuo nome" type="text"/>
+</div>
+<div class="form-group">
+<label class="form-label">Email</label>
+<input class="form-input" placeholder="tua@email.com" type="email"/>
+</div>
+<div class="form-group">
+<label class="form-label">Telefono</label>
+<input class="form-input" placeholder="+39 123 456 7890" type="tel"/>
+</div>
+<div class="form-group">
+<label class="form-label">Messaggio</label>
+<textarea class="form-input" placeholder="Come possiamo aiutarti?" rows="4"></textarea>
+</div>
+<a class="btn-cta" href="#" style="background-color: var(--color-green); font-size: 16px; padding: 15px 40px; border:none; width:100%; text-align:center;">Invia Richiesta</a>
+</div>
+<div class="contact-info">
+<div class="contact-info-item">
+<div class="contact-info-icon">
+<i class="fa-solid fa-location-dot"></i>
+</div>
+<div>
+<h3 style="margin:0 0 5px 0; font-family:'Montserrat', sans-serif;">Sede Legale</h3>
+<p style="margin:0; color:#555;">Via Luisa Sanfelice, 27<br/>72012 Carovigno (BR)</p>
+</div>
+</div>
+<div class="contact-info-item">
+<div class="contact-info-icon">
+<i class="fa-solid fa-envelope"></i>
+</div>
+<div>
+<h3 style="margin:0 0 5px 0; font-family:'Montserrat', sans-serif;">Email &amp; PEC</h3>
+<p style="margin:0; color:#555;">info@impiantievoluti.it<br/>impiantievolutisrls@pec.it</p>
+</div>
+</div>
+<div class="contact-info-item">
+<div class="contact-info-icon">
+<i class="fa-solid fa-file-invoice"></i>
+</div>
+<div>
+<h3 style="margin:0 0 5px 0; font-family:'Montserrat', sans-serif;">Dati Fiscali</h3>
+<p style="margin:0; color:#555;">P.IVA: 02691330746</p>
+</div>
+</div>
+<div style="margin-top: 40px;">
+<h3 style="font-family:'Montserrat', sans-serif; margin-bottom: 20px;">Seguici su</h3>
+<div style="display: flex; gap: 15px;">
+<a href="#" style="width:40px; height:40px; background:#3b5998; color:white; border-radius:50%; display:flex; align-items:center; justify-content:center;"><i class="fa-brands fa-facebook-f"></i></a>
+<a href="#" style="width:40px; height:40px; background:#0077b5; color:white; border-radius:50%; display:flex; align-items:center; justify-content:center;"><i class="fa-brands fa-linkedin-in"></i></a>
+<a href="#" style="width:40px; height:40px; background:#E1306C; color:white; border-radius:50%; display:flex; align-items:center; justify-content:center;"><i class="fa-brands fa-instagram"></i></a>
+</div>
+</div>
+</div>
+</div>
+</section>
+
+<!-- Footer -->
+<footer class="footer">
+<div class="footer-grid">
+<div>
+<div style="display:flex; align-items:center; gap:10px; margin-bottom:20px;">
+<i class="fa-solid fa-bolt text-orange" style="font-size:24px;"></i>
+<h2 style="color:white; font-family:'Montserrat', sans-serif; font-size:20px; margin:0;">IMPIANTI EVOLUTI</h2>
+</div>
+<p style="line-height:1.6;">Soluzioni tecnologiche avanzate per l'impiantistica civile e industriale. Innovazione, sicurezza e sostenibilità al tuo servizio.</p>
+</div>
+<div>
+<h3>Servizi</h3>
+<ul class="footer-links">
+<li><a href="#" style="color:inherit; text-decoration:none;">Impianti Elettrici</a></li>
+<li><a href="#" style="color:inherit; text-decoration:none;">Idrotermosanitari</a></li>
+<li><a href="#" style="color:inherit; text-decoration:none;">Energie Rinnovabili</a></li>
+<li><a href="#" style="color:inherit; text-decoration:none;">Edilizia &amp; Infrastrutture</a></li>
+</ul>
+</div>
+<div>
+<h3>Link Rapidi</h3>
+<ul class="footer-links">
+<li><a href="#chi-siamo" style="color:inherit; text-decoration:none;">Chi Siamo</a></li>
+<li><a href="#contatti" style="color:inherit; text-decoration:none;">Richiedi Preventivo</a></li>
+<li><a href="#" style="color:inherit; text-decoration:none;">Lavora con Noi</a></li>
+<li><a href="#" style="color:inherit; text-decoration:none;">Privacy Policy</a></li>
+</ul>
+</div>
+</div>
+<div class="footer-bottom">
+<p>© 2026 Impianti Evoluti SRLS - P.IVA 02691330746 - Tutti i diritti riservati.</p>
+<p>Designed with <i class="fa-solid fa-heart text-orange"></i> in Puglia</p>
+</div>
+</footer>
+
+<script>
+// Initialize Chart
+document.addEventListener('DOMContentLoaded', function() {
+    const ctx = document.getElementById('growthChart').getContext('2d');
+    
+    // Create gradient
+    const gradient = ctx.createLinearGradient(0, 0, 0, 400);
+    gradient.addColorStop(0, 'rgba(39, 174, 96, 0.6)');
+    gradient.addColorStop(1, 'rgba(39, 174, 96, 0.05)');
+
+    const growthChart = new Chart(ctx, {
+        type: 'line',
+        data: {
+            labels: ['2022', '2023', '2024'],
+            datasets: [{
+                label: 'Fatturato (€)',
+                data: [50000, 118000, 201000],
+                borderColor: '#27AE60',
+                backgroundColor: gradient,
+                borderWidth: 4,
+                pointBackgroundColor: '#fff',
+                pointBorderColor: '#F39C12',
+                pointBorderWidth: 3,
+                pointRadius: 8,
+                pointHoverRadius: 10,
+                fill: true,
+                tension: 0.3
+            }]
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: {
+                legend: {
+                    display: false
+                },
+                tooltip: {
+                    backgroundColor: '#2C3E50',
+                    titleFont: { family: 'Montserrat', size: 14 },
+                    bodyFont: { family: 'Roboto', size: 14 },
+                    padding: 12,
+                    displayColors: false,
+                    callbacks: {
+                        label: function(context) {
+                            return new Intl.NumberFormat('it-IT', { style: 'currency', currency: 'EUR' }).format(context.parsed.y);
+                        }
+                    }
+                }
+            },
+            scales: {
+                y: {
+                    beginAtZero: true,
+                    grid: { color: 'rgba(0, 0, 0, 0.05)' },
+                    ticks: { 
+                        font: { family: 'Roboto' },
+                        callback: function(value) { return value / 1000 + 'k €'; }
+                    }
+                },
+                x: {
+                    grid: { display: false },
+                    ticks: { 
+                        font: { family: 'Montserrat', weight: 'bold' },
+                        color: '#1A5276'
+                    }
+                }
+            }
+        }
+    });
+});
+</script>
+
+</body>
+</html>
